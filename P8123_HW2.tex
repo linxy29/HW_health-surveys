@@ -1,0 +1,325 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Homework 2},
+            pdfauthor={Xinyi Lin},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\providecommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{Homework 2}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+    \author{Xinyi Lin}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+      \predate{\centering\large\emph}
+  \postdate{\par}
+    \date{9/20/2019}
+
+
+\begin{document}
+\maketitle
+
+\hypertarget{question-1}{%
+\subsection{Question 1}\label{question-1}}
+
+\hypertarget{problem-a}{%
+\subsubsection{Problem a}\label{problem-a}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# input data}
+\NormalTok{data1 =}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\StringTok{"Class"}\NormalTok{ =}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{25}\NormalTok{, }\StringTok{"mean score"}\NormalTok{ =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\FloatTok{51.3}\NormalTok{, }\FloatTok{52.1}\NormalTok{, }\FloatTok{59.6}\NormalTok{, }\FloatTok{46.0}\NormalTok{, }\FloatTok{53.3}\NormalTok{, }\FloatTok{55.5}\NormalTok{, }\FloatTok{59.5}\NormalTok{, }\FloatTok{52.8}\NormalTok{, }\FloatTok{51.6}\NormalTok{, }\FloatTok{45.3}\NormalTok{, }\FloatTok{54.0}\NormalTok{, }\FloatTok{39.4}\NormalTok{, }\FloatTok{54.3}\NormalTok{, }\FloatTok{49.5}\NormalTok{, }\FloatTok{52.4}\NormalTok{, }\FloatTok{50.7}\NormalTok{, }\FloatTok{52.9}\NormalTok{, }\FloatTok{49.1}\NormalTok{, }\FloatTok{49.0}\NormalTok{, }\FloatTok{54.4}\NormalTok{, }\FloatTok{50.0}\NormalTok{,}\FloatTok{46.8}\NormalTok{, }\FloatTok{50.7}\NormalTok{, }\FloatTok{50.5}\NormalTok{, }\FloatTok{56.1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{y_bar =}\StringTok{ }\KeywordTok{mean}\NormalTok{(data1}\OperatorTok{$}\NormalTok{mean.score)}
+\NormalTok{y_bar}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 51.472
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{f_alpha =}\StringTok{ }\DecValTok{25}\OperatorTok{/}\DecValTok{108}
+\NormalTok{var_y =}\StringTok{ }\NormalTok{(}\DecValTok{1}\OperatorTok{-}\NormalTok{f_alpha)}\OperatorTok{*}\KeywordTok{var}\NormalTok{(data1}\OperatorTok{$}\NormalTok{mean.score)}\OperatorTok{/}\DecValTok{25}
+\NormalTok{marg =}\StringTok{ }\KeywordTok{round}\NormalTok{(}\KeywordTok{qt}\NormalTok{(}\FloatTok{0.975}\NormalTok{, }\DecValTok{24}\NormalTok{)}\OperatorTok{*}\KeywordTok{sqrt}\NormalTok{(var_y),}\DecValTok{3}\NormalTok{)}
+\NormalTok{marg}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.576
+\end{verbatim}
+
+By using R, we can get the estimation of the average score is 51.472.
+The margin of error is 1.576.
+
+\hypertarget{problem-b}{%
+\subsubsection{Problem b}\label{problem-b}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{var_SRS =}\StringTok{ }\FloatTok{0.4}
+\CommentTok{# design effect}
+\NormalTok{deff =}\StringTok{ }\KeywordTok{round}\NormalTok{(var_y}\OperatorTok{/}\NormalTok{var_SRS, }\DecValTok{3}\NormalTok{)}
+\NormalTok{deff}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.457
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# rate of homogeneity}
+\NormalTok{n0 =}\StringTok{ }\DecValTok{30}
+\NormalTok{roh =}\StringTok{ }\KeywordTok{round}\NormalTok{((deff}\DecValTok{-1}\NormalTok{)}\OperatorTok{/}\NormalTok{(n0}\DecValTok{-1}\NormalTok{), }\DecValTok{3}\NormalTok{)}
+\NormalTok{roh}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.016
+\end{verbatim}
+
+The design effect is 1.457 and the rate of homogeneity is 0.016.
+
+\hypertarget{problem-c}{%
+\subsubsection{Problem c}\label{problem-c}}
+
+If we want to achieve the same \(var_{SRS}(\bar y)\), then:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{deff_new =}\StringTok{ }\DecValTok{1}\OperatorTok{+}\NormalTok{(}\DecValTok{40-1}\NormalTok{)}\OperatorTok{*}\NormalTok{roh}
+\NormalTok{vary_new =}\StringTok{ }\NormalTok{var_SRS}\OperatorTok{*}\NormalTok{deff_new}
+\NormalTok{k_new =}\StringTok{ }\DecValTok{200}\OperatorTok{/}\NormalTok{(}\DecValTok{200}\OperatorTok{*}\NormalTok{vary_new}\OperatorTok{/}\KeywordTok{var}\NormalTok{(data1}\OperatorTok{$}\NormalTok{mean.score)}\OperatorTok{+}\DecValTok{1}\NormalTok{)}
+\NormalTok{k_new}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 25.47264
+\end{verbatim}
+
+\[var(\bar y) = \frac{1-f_{\alpha}}{k}S_{\alpha}^2\]
+\[var(\bar y) = \frac{1-\frac{k}{K}}{k}S_{\alpha}^2\]
+\[K\frac{var(\bar y)}{S_{\alpha}^2}=\frac{K}{k}-1\]
+\[k = \frac{K}{K\frac{var(\bar y)}{S_{\alpha}^2}+1}\]
+
+So 26 classes need to be selected.
+
+If we want to achieve the same \(var(\bar y)\), then:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{deff_new =}\StringTok{ }\DecValTok{1}\OperatorTok{+}\NormalTok{(}\DecValTok{40-1}\NormalTok{)}\OperatorTok{*}\NormalTok{roh}
+\NormalTok{varSRS_new =}\StringTok{ }\NormalTok{var_y}\OperatorTok{/}\NormalTok{deff_new}
+\end{Highlighting}
+\end{Shaded}
+
+\[var_{new,SRS}(\bar y) = \frac{1-n_{new}/8000}{n_{new}}S^2\]
+\[var_{SRS}(\bar y) = \frac{1-750/3240}{750}S^2\] \[n_{SRS} = 1008\]
+\[n_{new} = (1+(n_o-1)roh)n_{SRS} \approx 1637\]
+
+\[k = n_{new}/40 \approx 41\]
+
+So 41 classes need to be selected.
+
+\hypertarget{question-2}{%
+\subsection{Question 2}\label{question-2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data2 =}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\StringTok{"Job"}\NormalTok{=}\KeywordTok{c}\NormalTok{(}\StringTok{"A"}\NormalTok{, }\StringTok{"AR"}\NormalTok{, }\StringTok{"NA"}\NormalTok{), }\StringTok{"Mean"}\NormalTok{=}\KeywordTok{c}\NormalTok{(}\FloatTok{7.63}\NormalTok{,}\FloatTok{7.74}\NormalTok{,}\FloatTok{6.55}\NormalTok{), }\StringTok{"Standard error"}\NormalTok{=}\KeywordTok{c}\NormalTok{(}\FloatTok{0.15}\NormalTok{, }\FloatTok{0.35}\NormalTok{, }\FloatTok{0.11}\NormalTok{), }\StringTok{"sample size"}\NormalTok{=}\KeywordTok{c}\NormalTok{(}\DecValTok{1347}\NormalTok{, }\DecValTok{163}\NormalTok{, }\DecValTok{1095}\NormalTok{), }\StringTok{"percentage"}\NormalTok{ =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\FloatTok{0.4}\NormalTok{))}
+\NormalTok{mean =}\StringTok{ }\KeywordTok{sum}\NormalTok{(data2}\OperatorTok{$}\NormalTok{Mean}\OperatorTok{*}\NormalTok{data2}\OperatorTok{$}\NormalTok{percentage)}
+\NormalTok{mean}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 7.209
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{var_ybar =}\StringTok{ }\KeywordTok{sum}\NormalTok{(data2}\OperatorTok{$}\NormalTok{percentage}\OperatorTok{^}\DecValTok{2}\OperatorTok{*}\NormalTok{data2}\OperatorTok{$}\NormalTok{Standard.error}\OperatorTok{^}\DecValTok{2}\NormalTok{)}
+\NormalTok{low_q =}\StringTok{ }\KeywordTok{round}\NormalTok{(mean }\OperatorTok{-}\StringTok{ }\KeywordTok{qt}\NormalTok{(}\FloatTok{0.975}\NormalTok{, }\KeywordTok{sum}\NormalTok{(data2}\OperatorTok{$}\NormalTok{sample.size)}\OperatorTok{-}\DecValTok{3}\NormalTok{)}\OperatorTok{*}\KeywordTok{sqrt}\NormalTok{(var_ybar), }\DecValTok{3}\NormalTok{)}
+\NormalTok{low_q}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 7.025
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{high_q =}\StringTok{ }\KeywordTok{round}\NormalTok{(mean }\OperatorTok{+}\StringTok{ }\KeywordTok{qt}\NormalTok{(}\FloatTok{0.975}\NormalTok{, }\KeywordTok{sum}\NormalTok{(data2}\OperatorTok{$}\NormalTok{sample.size)}\OperatorTok{-}\DecValTok{3}\NormalTok{)}\OperatorTok{*}\KeywordTok{sqrt}\NormalTok{(var_ybar), }\DecValTok{3}\NormalTok{)}
+\NormalTok{high_q}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 7.393
+\end{verbatim}
+
+The mean time for the population is 7.209, and 95\% confidence interval
+is (7.025, 7.393).
+
+\hypertarget{question-3}{%
+\subsection{Question 3}\label{question-3}}
+
+\hypertarget{problem-a-1}{%
+\subsubsection{Problem a}\label{problem-a-1}}
+
+The target population is the U.S. population.
+
+\hypertarget{problem-b-1}{%
+\subsubsection{Problem b}\label{problem-b-1}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  The first stage consisted of selecting PSUs from a frame of all U.S.
+  counties.
+\item
+  The second stage of selection for the NHANES 2011-2014 sample included
+  a sample of area segments, comprising census blocks or combinations of
+  blocks.
+\item
+  The third stage consisted of dwelling units(DUs), including
+  noninstitutional group quarters such as dormitories.
+\item
+  The forth stage consisted of persons within occupied DUs, or
+  households.
+\end{enumerate}
+
+\hypertarget{problem-c-1}{%
+\subsubsection{Problem c}\label{problem-c-1}}
+
+From the approximately 3100 counties and county equivalents in the
+United States, 2846 PSUs were formed(most of which consisted of
+individual counties), a sample of 60 locations was selected and 15 of
+these locations per year were randomly allocated to each of the years. A
+total of 8 study locations in the full NHANES 2011-2014 out of the
+60-location sample were assigned to certainty PSUs. These locations were
+in six counties; one county contained multiple study locations.
+
+
+\end{document}
