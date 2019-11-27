@@ -1,0 +1,49 @@
+---
+title: "Homework 5"
+author: "Xinyi Lin"
+date: "10/18/2019"
+output:
+  pdf_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r, message=FALSE}
+library(survey)
+library(tidyverse)
+library(ggplot2)
+```
+
+## Question a
+
+```{r}
+data1 = read.csv("./ess6.csv") %>% 
+  mutate(psu = as.factor(psu))
+```
+
+```{r, warning=FALSE}
+design = svydesign(id = ~psu, strata = ~stratify, weights = ~PSPWGHT, data = data1)
+design_median = svyquantile(~AGEA, design, quantiles = 0.5, ci = TRUE, na.rm = TRUE)
+design_median
+```
+
+The estimated population median age is 43 and 95% confidence interval is (41,45).
+
+## Question b
+
+```{r}
+sub1 = subset(design, GNDR==1)
+liner_male = svyquantile(~AGEA, sub1, quantiles = 0.5, ci = TRUE, na.rm = TRUE)
+liner_male
+sub2 = subset(design, GNDR==2)
+liner_female = svyquantile(~AGEA, sub2, quantiles = 0.5, ci = TRUE, na.rm = TRUE)
+liner_female
+```
+
+The median among males is 40 with 95% confidence interval (37,43) and the median among females is 45 with 95% confidence interval (43.000,47.186).
+
+```{r, ref.label=knitr::all_labels(),echo=TRUE,eval=FALSE}
+```

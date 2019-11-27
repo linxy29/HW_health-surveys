@@ -1,0 +1,52 @@
+---
+title: "Homework 7"
+author: "Xinyi Lin"
+date: "10/28/2019"
+output: pdf_document
+---
+
+```{r, message=FALSE}
+library(tidyverse)
+```
+
+```{r}
+nhanes_data = read.csv("./nhanes.csv")
+```
+
+## Question 1
+
+The variable `WTMEC2YR` represents the sampling weights. The minimum, 1st, 5th, 10th, 25th percentile, median, 75th, 90th, 95th, 99th percentile, and maximum of `WTMEC2YR` are shown below. The minimum equals to 0th percentile and the maximun equals to 100th percentile.
+
+```{r}
+quantile(nhanes_data$WTMEC2YR, c(0, 0.01, 0.05, 0.1, 0.25, 0.5, 0.75, 0.90, 0.95, 0.99, 1))
+```
+
+```{r}
+sum_weight = sum(nhanes_data$WTMEC2YR)
+sum_weight
+```
+
+The sum of the sampling weight equals to `r sum_weight` which is much larger than the sample size, so the weight variable hasn't been normalized.
+
+## Question 2
+
+Variables `SDMVPSU` and `SDMVSTRA` contain the sampling error codes. There are `r length(unique(nhanes_data$SDMVSTRA))` strata selected from stratum and in each stratum, 2 PSUs are selected. Sample sizes of each PSU are shown below.
+
+```{r}
+nhanes_data %>% 
+  group_by(SDMVSTRA,SDMVPSU) %>% 
+  summarize(n = n()) %>% 
+  knitr::kable()
+```
+
+
+## Question 3
+
+```{r, message=FALSE, fig.height=8, fig.width=13}
+BPXSY1_mis = nrow(nhanes_data[is.na(nhanes_data$BPXSY1),])/nrow(nhanes_data)
+BMXBMI_mis = nrow(nhanes_data[is.na(nhanes_data$BMXBMI),])/nrow(nhanes_data)
+library(mice)
+md.pattern(nhanes_data)
+```
+
+There are `r round(BPXSY1_mis,3)*100` percentage of cases has missing data on blood pressure and `r round(BMXBMI_mis,3)*100` percentage of cases has missing data on BMI. The summary of the missing data partterns is shown above. Missing values only exist in `BMXBMI` and `BPXSY1`. There are 93 missing values in `BMXBMI` and 621 missing values in `BPXSY1`.
